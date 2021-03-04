@@ -2,10 +2,11 @@ ext["bomDependencyManagementProperties"] = new Properties()
 new URL(ext["bom"] + "bom-dependency-management.properties").withInputStream { ext["bomDependencyManagementProperties"].load(it) }
 ext["dependencyManagementProperties"] = new Properties()
 new URL(ext["bom"] + "dependency-management.properties").withInputStream { ext["dependencyManagementProperties"].load(it) }
+
 def gradleResources
 if (System.env.GRADLE_RESOURCES) {
 	gradleResources = System.env.GRADLE_RESOURCES
 } else {
-	gradleResources = "https://raw.githubusercontent.com/bakslashr/gradle-resources/master/"
+	gradleResources = "https://raw.githubusercontent.com/bakslashr/gradle-resources/\${com.infernalbeast:gradle-scripts}/"
 }
 ext["gradle-resources"] = gradleResources.replaceAll("\\\$\\{com.infernalbeast:gradle-scripts\\}", ext["dependencyManagementProperties"]["com.infernalbeast:gradle-resources"])
